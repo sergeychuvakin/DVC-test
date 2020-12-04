@@ -39,13 +39,49 @@ git rm elections_2.csv
 git rm elections_3.csv
 git rm elections_4.csv
 
-git commit -m 'add commons'
+git add .
+git commit -m 'add sh file'
 git push 
 
-dvc remote add -d storage s3://itx-bjd-app-iq/development/development/schuvaki/dvc
-git commit .dvc/config -m "Configure remote storage"
+
+
+
+
 
 dvc push
 dvc pull
 
-dvc list https://github.com/sergeychuvakin/DVC-test.git
+
+aws s3 cp s3://itx-bjd-app-iq/development/development/schuvaki/dvc ./data --sse --recursive
+dvc add data/
+git add .gitignore data.dvc
+
+git add .
+
+git commit -m 'add raw and shell script'
+git push
+
+git status
+dvc status
+
+dvc remote add -fd --external storage s3://itx-bjd-app-iq/development/development/schuvaki/dvc
+git commit .dvc/config -m "Configure remote storage"
+
+
+dvc push #2> er.txt > out.txt
+
+dvc remote list
+
+dvc checkout
+# 
+# dvc config cache.s3 storage
+
+# 
+# dvc remote modify storage credentialpath ~/.aws/credentials
+# dvc remote modify storage profile profile-name
+
+
+aws s3 ls s3://itx-bjd-app-iq/development/development/schuvaki/dvc
+
+cat .dvc/config
+

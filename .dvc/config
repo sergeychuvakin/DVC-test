@@ -1,4 +1,6 @@
 [core]
     remote = storage
+[cache]
+    s3 = storage
 ['remote "storage"']
     url = s3://itx-bjd-app-iq/development/development/schuvaki/dvc

@@ -1,7 +1,9 @@
 setwd('/mnt/DVC-test')
 
-df <- read.csv('elections_3.csv')
+source('common.R')
+
+df <- s3_read_csv('development/schuvaki/dvc/elections_3.csv')
 
 df['new_col_2'] <- df['new_col'] + df['year']
 
-write.csv(df, 'elections_4.csv')
+s3_write_csv(df, 'development/schuvaki/dvc/elections_4.csv')
